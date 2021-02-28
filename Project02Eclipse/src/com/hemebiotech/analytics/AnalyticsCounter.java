@@ -1,43 +1,47 @@
 package com.hemebiotech.analytics;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.util.Collections;
+import java.util.List;
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
 	
 	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
-
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
-
-			line = reader.readLine();	// get another symptom
+		
+		/*
+		 * The main Method should just be to enter the file of the symptoms.
+		 * It should call another method that does the job.
+		 */
+		
+		countSymptoms("/home/dj/git/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/Project02Eclipse/symptoms.txt");
 		}
 		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
+	/**
+	 * Sort, count and prints the symptoms in a given file.
+	 * @param filePath the path of the file
+	 */
+	public static void countSymptoms (String filePath) throws IndexOutOfBoundsException {
+		ReadSymptomDataFromFile fileReader = new ReadSymptomDataFromFile(filePath);
+		
+		/*
+		 * Sorting the list of symptoms
+		 */
+		List<String> symptomList = fileReader.GetSymptoms();
+		Collections.sort(symptomList);
+		
+		String currentSymptom;
+		int countCurrentSymptom = 1;
+		
+		for (int currentSymptomIndex=0;currentSymptomIndex < symptomList.size();currentSymptomIndex++) {
+			currentSymptom = symptomList.get(currentSymptomIndex);
+			try {
+				if (currentSymptom.equals(symptomList.get(currentSymptomIndex+1))) {
+					countCurrentSymptom++;
+				} else {
+					System.out.println(currentSymptom+" : "+countCurrentSymptom);
+					countCurrentSymptom = 1;
+				}
+			} catch (IndexOutOfBoundsException exception) {
+				
+			}
+		}		
 	}
 }
