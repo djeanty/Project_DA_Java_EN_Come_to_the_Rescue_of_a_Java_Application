@@ -4,6 +4,12 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.List;
 
+
+/**
+ * Reads a file with symptoms, counts them and print the total of each of these symptoms.
+ * @author Damien Jeanty
+ *
+ */
 public class AnalyticsCounter {
 	
 	/**
@@ -22,13 +28,10 @@ public class AnalyticsCounter {
 		} else {
 			countSymptoms(args[0]);
 		}
-		// countSymptoms("/home/dj/git/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/Project02Eclipse/symptoms.txt");
-		
 	}
 
 	/**
-	 * Sort, count and prints the total of each symptoms in a given file.
-	 * 
+	 * Sort, count and prints to the standard output the total of each symptoms in a given file.
 	 * @param filePath the path of the file
 	 */
 	public static void countSymptoms(String filePath) {
@@ -42,7 +45,6 @@ public class AnalyticsCounter {
 
 		String currentSymptom;
 		int countCurrentSymptom = 1;
-
 		for (int currentSymptomIndex = 0; currentSymptomIndex < symptomList.size() - 1; currentSymptomIndex++) {
 			currentSymptom = symptomList.get(currentSymptomIndex);
 				if (currentSymptom.equals(symptomList.get(currentSymptomIndex + 1))) {
