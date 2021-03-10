@@ -54,7 +54,7 @@ public class AnalyticsCounter {
 	 * @param filePath the path of the file
 	 * @return a map with the key being the symptom and the value its frequency
 	 */
-	public static Map<String, Integer> countSymptoms(String filePath) {
+	public static void countSymptoms(String filePath) {
 
 		ReadSymptomDataFromFile fileReader = new ReadSymptomDataFromFile(filePath);
 		List<String> symptomList = fileReader.GetSymptoms();
@@ -76,15 +76,36 @@ public class AnalyticsCounter {
 				symptoms.put(symptomList.get(i), 1);
 			}
 		}
-		writeSymptoms("output.txt", symptoms.toString());
-		//System.out.println(symptoms);
-		return symptoms;
+		writeSymptoms("output.txt", symptomsToString(symptoms));
+		
 	}
 
-	public static void printSymptoms(Map<String, Integer> symptoms) {
-		System.out.println(symptoms);
+	/**
+	 * Creates a String from a TreeMap
+	 * 
+	 * @param symptoms the TreeMap given
+	 * @return the string created
+	 */
+	public static String symptomsToString(Map<String, Integer> symptoms) {
+		String result = "";
+		
+		for(Map.Entry<String,Integer> symptom : symptoms.entrySet()) {
+			
+			  String key = symptom.getKey();
+			  Integer value = symptom.getValue();
+			  result = result + key+" : "+value+"\n";
+			  
+		}
+		
+		return result;
 	}
 	
+	/**
+	 * Write symptoms inside a File
+	 * 
+	 * @param fileName the name of the file 
+	 * @param whatToWrite the symptoms to write
+	 */
 	public static void writeSymptoms(String fileName, String whatToWrite) {
 		SymptomCountWriterInFile scwinf = new SymptomCountWriterInFile(fileName);
 		scwinf.writeInCountFile(whatToWrite);
