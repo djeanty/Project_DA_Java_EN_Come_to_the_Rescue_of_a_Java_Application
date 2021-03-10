@@ -25,6 +25,7 @@ public class AnalyticsCounter {
 	public static void main(String args[]) {
 
 		// If we don't give a file path as an argument, we need to read one.
+		
 		if (args.length == 0) {
 			countSymptoms(pathOfFile());
 		} else {
@@ -75,11 +76,17 @@ public class AnalyticsCounter {
 				symptoms.put(symptomList.get(i), 1);
 			}
 		}
-		System.out.println(symptoms);
+		writeSymptoms("output.txt", symptoms.toString());
+		//System.out.println(symptoms);
 		return symptoms;
 	}
 
 	public static void printSymptoms(Map<String, Integer> symptoms) {
 		System.out.println(symptoms);
+	}
+	
+	public static void writeSymptoms(String fileName, String whatToWrite) {
+		SymptomCountWriterInFile scwinf = new SymptomCountWriterInFile(fileName);
+		scwinf.writeInCountFile(whatToWrite);
 	}
 }
