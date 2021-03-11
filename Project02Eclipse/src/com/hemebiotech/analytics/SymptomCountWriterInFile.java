@@ -22,7 +22,7 @@ public class SymptomCountWriterInFile {
 			if (file.createNewFile()) {
 				System.out.println("File created");
 			} else {
-				System.out.println("File alread created");
+				System.out.println("File already created");
 			}
 			
 		}

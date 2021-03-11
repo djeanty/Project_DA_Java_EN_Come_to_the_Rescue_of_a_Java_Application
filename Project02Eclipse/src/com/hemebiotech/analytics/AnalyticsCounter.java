@@ -12,20 +12,23 @@ import java.util.Scanner;
 public class AnalyticsCounter {
 
 	/**
-	 * Reads the file path of the symptoms's file and uses the class SymptomCount to count and write in a file the symptoms.
+	 * Uses the method pathOfFile() to read the file path of the symptoms file.
+	 * It then uses an instance of the class SymptomCount to count the symptoms and writes the sum in another file.
 	 * 
 	 * @param args if not empty, it is the symptoms file path.
 	 */
 	public static void main(String args[]) {
 
-		// If we don't give a file path as an argument, we need to read one.
+		/* If the user doesn't give a file path as an argument when starting the application
+		 * the method needs to read one.
+		*/
 		SymptomCount symptomCount;
 		if (args.length == 0) {
 			symptomCount = new SymptomCount(pathOfFile());
 		} else {
 			symptomCount = new SymptomCount(args[0]);
 		}
-		SymptomCount.writeSymptoms("output.txt", symptomCount.toString());
+		SymptomCount.writeSymptoms("results.out", symptomCount.toString());
 	}
 
 	/**

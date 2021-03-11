@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * This class handles the mapping of the symptoms and the number they've been seen.
+ * A SymptomCount represents a map of a symptom (String) and the amount of times it has been seen (Integer).
  * 
  * @author dj
  *
@@ -18,26 +18,22 @@ public class SymptomCount {
 	private Map<String, Integer> symptomsMap = new TreeMap<String, Integer>();
 	
 	/* TODO: Possibility to upgrade the code :
-	 * Read the output file and include the count into the new one.
+	 * If the output file already exists, read it and use it as a base for the map.
 	*/
+	
 	/**
-	 * Creates a symptomCount from a filePath.
-	 * @param filePath
+	 * Creates an instance of SymptomCount from a filePath.
+	 * @param filePath the file path to read the symptoms from.
 	 */
 	public SymptomCount(String filePath) {
 		try {
-			
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line = reader.readLine();
 			
-			String[] entrySymptom = new String[2];
 			line = reader.readLine();
+			
 			while (line != null && line != "") {
-			//	result.add(line);		
-				System.out.println("Line : " + line);
-				System.out.println("symptomsMap : " + symptomsMap);
 				if (symptomsMap.containsKey(line)) {
-					
 					symptomsMap.replace(line, symptomsMap.get(line)+1);
 				} else {
 					symptomsMap.put(line, 1);
@@ -46,19 +42,17 @@ public class SymptomCount {
 			}
 			reader.close();
 		} catch (FileNotFoundException fnf) {
-			System.out.println("File not found. Program exited.");
+			System.out.println("Symptom file at the path : "+filePath+" not found.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 	/**
 	 * Counts the frequency of each symptoms in a list of symptoms.
 	 * 
 	 * @param filePath the path of the file
 	 */
+	/*
 	public void countSymptoms(String filePath) {
 
 		ReadSymptomDataFromFile fileReader = new ReadSymptomDataFromFile(filePath);
@@ -86,6 +80,7 @@ public class SymptomCount {
 		//writeSymptoms("output.txt", symptomsToString(symptomsMap));
 		
 	}
+	*/
 	/**
 	 * Creates a String from a TreeMap
 	 * 
