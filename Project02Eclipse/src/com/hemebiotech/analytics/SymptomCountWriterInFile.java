@@ -32,7 +32,7 @@ public class SymptomCountWriterInFile {
 	}
 	/**
 	 * Writes a String to the file.
-	 * @param counterToString
+	 * @param counterToString The string to write into the file.
 	 */
 	public void writeCounterToFile(String counterToString) {
 		try {

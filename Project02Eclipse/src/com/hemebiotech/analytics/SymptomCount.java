@@ -47,46 +47,8 @@ public class SymptomCount {
 			e.printStackTrace();
 		}
 	}
-	/**
-	 * Counts the frequency of each symptoms in a list of symptoms.
-	 * 
-	 * @param filePath the path of the file
-	 */
-	/*
-	public void countSymptoms(String filePath) {
-
-		ReadSymptomDataFromFile fileReader = new ReadSymptomDataFromFile(filePath);
-		List<String> symptomList = fileReader.GetSymptoms();
-
-		
-		// TODO: Create a map from the existing output file or create a new one.
-		// We'll go through the list of symptoms.
-		//symptomsMap = new TreeMap<String, Integer>();
-		for (int i = 0; i < symptomList.size(); i++) {
-
-			// In case the symptom has been seen
-			if (symptomsMap.containsKey(symptomList.get(i))) {
-				// We need to increment the value of the key.
-				int valueOfKey = symptomsMap.get(symptomList.get(i));
-				valueOfKey++;
-				// And replace it in the map
-				symptomsMap.replace(symptomList.get(i), valueOfKey);
-			}
-			// In case the symptom has not been seen
-			else {
-				symptomsMap.put(symptomList.get(i), 1);
-			}
-		}
-		//writeSymptoms("output.txt", symptomsToString(symptomsMap));
-		
-	}
-	*/
-	/**
-	 * Creates a String from a TreeMap
-	 * 
-	 * @return the string created
-	 * @override
-	 */
+	
+	@Override
 	public String toString() {
 		String result = "";
 		
@@ -100,8 +62,9 @@ public class SymptomCount {
 		
 		return result;
 	}
+	
 	/**
-	 * Write symptoms inside a File
+	 * Uses the SymptomCountWriterInFile class to write the symptoms count to a file.
 	 * 
 	 * @param fileName the name of the file 
 	 * @param whatToWrite the symptoms to write
