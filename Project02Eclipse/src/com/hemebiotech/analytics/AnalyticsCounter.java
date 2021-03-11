@@ -1,14 +1,9 @@
 package com.hemebiotech.analytics;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * Reads a file with symptoms, counts them and print the total of each of these
+ * This program counts symptoms from a file and then writes the count of these symptoms in another file.
  * symptoms.
  * 
  * @author Damien Jeanty
@@ -17,22 +12,20 @@ import java.util.Map;
 public class AnalyticsCounter {
 
 	/**
-	 * Reads the file path of the symptoms's file and calls another method that will
-	 * count the symptoms.
+	 * Reads the file path of the symptoms's file and uses the class SymptomCount to count and write in a file the symptoms.
 	 * 
 	 * @param args if not empty, it is the symptoms file path.
 	 */
 	public static void main(String args[]) {
 
 		// If we don't give a file path as an argument, we need to read one.
-		
+		SymptomCount symptomCount;
 		if (args.length == 0) {
-			countSymptoms(pathOfFile());
+			symptomCount = new SymptomCount(pathOfFile());
 		} else {
-			countSymptoms(args[0]);
+			symptomCount = new SymptomCount(args[0]);
 		}
-		// printSymptoms();
-		// TODO : use my class Symptom to store the TreeMap.
+		SymptomCount.writeSymptoms("output.txt", symptomCount.toString());
 	}
 
 	/**
@@ -48,66 +41,4 @@ public class AnalyticsCounter {
 		return filePath;
 	}
 
-	/**
-	 * Counts the frequency of each symptoms in a list of symptoms.
-	 * 
-	 * @param filePath the path of the file
-	 * @return a map with the key being the symptom and the value its frequency
-	 */
-	public static void countSymptoms(String filePath) {
-
-		ReadSymptomDataFromFile fileReader = new ReadSymptomDataFromFile(filePath);
-		List<String> symptomList = fileReader.GetSymptoms();
-
-		// We'll go through the list of symptoms.
-		Map<String, Integer> symptoms = new TreeMap<String, Integer>();
-		for (int i = 0; i < symptomList.size(); i++) {
-
-			// In case the symptom has been seen
-			if (symptoms.containsKey(symptomList.get(i))) {
-				// We need to increment the value of the key.
-				int valueOfKey = symptoms.get(symptomList.get(i));
-				valueOfKey++;
-				// And replace it in the map
-				symptoms.replace(symptomList.get(i), valueOfKey);
-			}
-			// In case the symptom has not been seen
-			else {
-				symptoms.put(symptomList.get(i), 1);
-			}
-		}
-		writeSymptoms("output.txt", symptomsToString(symptoms));
-		
-	}
-
-	/**
-	 * Creates a String from a TreeMap
-	 * 
-	 * @param symptoms the TreeMap given
-	 * @return the string created
-	 */
-	public static String symptomsToString(Map<String, Integer> symptoms) {
-		String result = "";
-		
-		for(Map.Entry<String,Integer> symptom : symptoms.entrySet()) {
-			
-			  String key = symptom.getKey();
-			  Integer value = symptom.getValue();
-			  result = result + key+" : "+value+"\n";
-			  
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Write symptoms inside a File
-	 * 
-	 * @param fileName the name of the file 
-	 * @param whatToWrite the symptoms to write
-	 */
-	public static void writeSymptoms(String fileName, String whatToWrite) {
-		SymptomCountWriterInFile scwinf = new SymptomCountWriterInFile(fileName);
-		scwinf.writeInCountFile(whatToWrite);
-	}
 }
