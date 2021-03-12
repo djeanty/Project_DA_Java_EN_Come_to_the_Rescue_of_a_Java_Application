@@ -4,17 +4,16 @@ import java.io.IOException;
 import java.io.FileWriter;
 
 /**
- * This class handles the output file (creates, writes and reads).
- * 
- * @author dj
- *
+ * Creates a file and writes a SymptomCount to it.
+ * @author Damien Jeanty
  */
 public class SymptomCountWriterInFile {
 	File file;
 	
 	/**
-	 * Create a file with a given name.
-	 * @param fileName the name of the file.
+	 * Creates a file with a given name and prints the result of this action to System.out (the file has been created successfully or already exists).   
+	 * 
+	 * @param fileName the name of the file to create
 	 */
 	public SymptomCountWriterInFile(String fileName) {
 		try {
@@ -31,8 +30,9 @@ public class SymptomCountWriterInFile {
 		}
 	}
 	/**
-	 * Writes a String to the file.
-	 * @param counterToString The string to write into the file.
+	 * Writes the String version of a SymptomCount to this file.
+	 * 
+	 * @param counterToString the SymptomCount to write to this file
 	 */
 	public void writeCounterToFile(String counterToString) {
 		try {

@@ -3,14 +3,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * A SymptomCount represents a map of a symptom (String) and the amount of times it has been seen (Integer).
- * 
- * @author dj
+ * Reads a file that contains one String per line, the String being a Symptom.
+ * Creates a TreeMap that is made of the symptom name (String) and the amount of times it has been seen (Integer).
+ * @author Damien Jeanty
  *
  */
 public class SymptomCount {
@@ -22,8 +21,8 @@ public class SymptomCount {
 	*/
 	
 	/**
-	 * Creates an instance of SymptomCount from a filePath.
-	 * @param filePath the file path to read the symptoms from.
+	 * Creates the map from a file of symptoms.
+	 * @param filePath The file path to read the symptoms from. If the file at the given path has not been found, prints a message to the standard output.
 	 */
 	public SymptomCount(String filePath) {
 		try {
@@ -64,14 +63,14 @@ public class SymptomCount {
 	}
 	
 	/**
-	 * Uses the SymptomCountWriterInFile class to write the symptoms count to a file.
+	 * Uses the SymptomCountWriterInFile class to write this SymptomCount to a file.
 	 * 
-	 * @param fileName the name of the file 
-	 * @param whatToWrite the symptoms to write
+	 * @param fileName the name of the file
+	 * @param symptomCounterToString the String version of this SymptomCounter
 	 */
-	public static void writeSymptoms(String fileName, String whatToWrite) {
+	public static void writeSymptoms(String fileName, String symptomCounterToString) {
 		SymptomCountWriterInFile scwinf = new SymptomCountWriterInFile(fileName);
-		scwinf.writeCounterToFile(whatToWrite);
+		scwinf.writeCounterToFile(symptomCounterToString);
 	}
 
 }
