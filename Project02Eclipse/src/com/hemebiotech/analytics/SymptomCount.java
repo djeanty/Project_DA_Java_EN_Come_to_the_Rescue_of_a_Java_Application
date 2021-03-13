@@ -29,8 +29,6 @@ public class SymptomCount {
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line = reader.readLine();
 			
-			line = reader.readLine();
-			
 			while (line != null && line != "") {
 				if (symptomsMap.containsKey(line)) {
 					symptomsMap.replace(line, symptomsMap.get(line)+1);
