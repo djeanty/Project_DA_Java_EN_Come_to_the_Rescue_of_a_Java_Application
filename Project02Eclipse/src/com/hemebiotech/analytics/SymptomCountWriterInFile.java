@@ -19,9 +19,9 @@ public class SymptomCountWriterInFile {
 		try {
 			file = new File(fileName);
 			if (file.createNewFile()) {
-				System.out.println("File created");
+				System.out.println("File created: results.out");
 			} else {
-				System.out.println("File already created");
+				System.out.println("File results.out already created, it will be overwritten.");
 			}
 			
 		}

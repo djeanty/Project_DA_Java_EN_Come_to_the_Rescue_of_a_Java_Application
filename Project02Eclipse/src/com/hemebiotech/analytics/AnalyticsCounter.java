@@ -15,7 +15,7 @@ public class AnalyticsCounter {
 	 * Uses the method pathOfFile() to read the file path of the symptoms file.
 	 * It then uses an instance of the class SymptomCount to count the symptoms and writes their sum in file named "results.out".
 	 * 
-	 * @param args if not empty, it is the symptoms file path.
+	 * @param args the symptoms file path can be given as an argument.
 	 */
 	public static void main(String args[]) {
 
