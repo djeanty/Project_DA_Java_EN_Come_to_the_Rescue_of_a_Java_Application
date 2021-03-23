@@ -38,7 +38,6 @@ nausea
 high blood pressure
 inflamation
 dry mouth
-
 shortness of breath
 headache
 blindness
@@ -99,4 +98,3 @@ anxiety
 anxiety
 cough
 blurred vision
-
